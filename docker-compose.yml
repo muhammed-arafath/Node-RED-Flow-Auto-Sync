@@ -1,0 +1,57 @@
+version: '3.8'
+
+services:
+  # Main Node-RED with Authentication
+  main-nodered:
+    image: nodered/node-red:latest
+    container_name: main-nodered
+    ports:
+      - "1880:1880"
+    environment:
+      - TZ=Asia/Kolkata
+      - NODE_RED_ENABLE_PROJECTS=true
+    volumes:
+      - ./main-data:/data
+    networks:
+      - nodered-network
+    restart: unless-stopped
+
+  # Client Node-RED (No Authentication)
+  client-nodered:
+    image: nodered/node-red:latest
+    container_name: client-nodered
+    ports:
+      - "1881:1880"
+    environment:
+      - TZ=Asia/Kolkata
+    volumes:
+      - ./client-data:/data
+    networks:
+      - nodered-network
+    restart: unless-stopped
+
+  # Auto-Sync Service
+  sync-service:
+    image: python:3.9-slim
+    container_name: nodered-sync
+    working_dir: /app
+    volumes:
+      - .:/app
+      - ./sync.log:/app/sync.log
+    command: sh -c "pip install requests && python3 sync.py --watch --interval 10"
+    depends_on:
+      - main-nodered
+      - client-nodered
+    networks:
+      - nodered-network
+    restart: unless-stopped
+    environment:
+      - PYTHONUNBUFFERED=1
+
+networks:
+  nodered-network:
+    driver: bridge
+
+volumes:
+  main-data:
+  client-data:
