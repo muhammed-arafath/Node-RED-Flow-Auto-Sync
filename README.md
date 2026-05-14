@@ -2,7 +2,7 @@
 
 Automatic synchronization of Node-RED flows between Main (with authentication) and Client (no authentication) instances.
 
-**Main Node-RED** (192.168.1.101:1880) → **Client Node-RED** (192.168.1.44:1880)
+**Main Node-RED** (192.168.1.xx:1880) → **Client Node-RED** (192.168.1.xx:1880)
 
 ---
 
@@ -37,15 +37,6 @@ Automatic synchronization of Node-RED flows between Main (with authentication) a
 
 ---
 
-## 🚀 Installation
-
-### 1. Clone Repository
-
-```bash
-git clone https://github.com/muhammed-arafath/SimpleFlow1.git
-cd SimpleFlow1
-```
-
 ### 2. Install Dependencies
 
 ```bash
@@ -57,8 +48,8 @@ pip install requests
 Edit `sync.py` and update:
 
 ```python
-MAIN = "http://192.168.1.101:1880"      # Your Main Node-RED URL
-CLIENT = "http://192.168.1.44:1880"     # Your Client Node-RED URL
+MAIN = "http://192.168.1.xx:1880"      # Your Main Node-RED URL
+CLIENT = "http://192.168.1.xx:1880"     # Your Client Node-RED URL
 FLOW = "Wansa AC"                        # Flow name to sync
 USER = "arafath"                         # Username
 PASS = "ND!13bo@"                        # Password
@@ -281,8 +272,8 @@ grep "SYNC COMPLETED" sync.log | tail -10
 **Solution:** Check if Node-RED instances are running and accessible:
 
 ```bash
-curl http://192.168.1.101:1880/flows
-curl http://192.168.1.44:1880/flows
+curl http://192.168.1.xx:1880/flows
+curl http://192.168.1.xx:1880/flows
 ```
 
 ---
@@ -346,8 +337,8 @@ Status: 204 OK
 
 | Option | Default | Description |
 |--------|---------|-------------|
-| `MAIN` | `http://192.168.1.101:1880` | Main Node-RED URL |
-| `CLIENT` | `http://192.168.1.44:1880` | Client Node-RED URL |
+| `MAIN` | `http://192.168.1.xx:1880` | Main Node-RED URL |
+| `CLIENT` | `http://192.168.1.xx:1880` | Client Node-RED URL |
 | `FLOW` | `Wansa AC` | Flow name to sync |
 | `USER` | `arafath` | Username |
 | `PASS` | `ND!13bo@` | Password |
@@ -395,62 +386,3 @@ SimpleFlow1/
 
 ---
 
-## 🤝 Contributing
-
-Contributions welcome! Please:
-
-1. Fork the repository
-2. Create a feature branch
-3. Commit changes
-4. Push to branch
-5. Open a Pull Request
-
----
-
-## 📄 License
-
-MIT License - See LICENSE file for details
-
----
-
-## 👨‍💻 Author
-
-**Muhammed Arafath**
-
-- GitHub: [@muhammed-arafath](https://github.com/muhammed-arafath)
-- Email: your-email@example.com
-
----
-
-## 🙏 Support
-
-If you find this useful, please:
-
-- ⭐ Star the repository
-- 🔔 Watch for updates
-- 📢 Share with others
-- 💬 Report issues
-
----
-
-## 📚 Additional Resources
-
-- [Node-RED Documentation](https://nodered.org/docs/)
-- [Node-RED API Reference](https://nodered.org/docs/api/admin/methods/)
-- [Python Requests Library](https://requests.readthedocs.io/)
-
----
-
-## ✅ Status
-
-- ✅ Tested and working
-- ✅ Production ready
-- ✅ Actively maintained
-- ✅ Open to contributions
-
----
-
-**Last Updated:** May 2026
-**Version:** 1.0.0
-
-Enjoy seamless Node-RED flow synchronization! 🚀
